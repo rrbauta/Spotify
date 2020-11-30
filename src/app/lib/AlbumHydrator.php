@@ -13,7 +13,7 @@
 		 *
 		 * @return array
 		 */
-		public static function hydrate($data, $band_name) {
+		public static function hydrate($data) {
 			$result = [];
 			
 			$albumHydrator = new Hydrator([
@@ -23,12 +23,10 @@
 			]);
 			
 			foreach ($data as $item) {
-				if ($item['artists'][0]['name'] == $band_name) {
 					$cover = CoverHydrator::hydrate($item['images'][0]);
 					$album = $albumHydrator->hydrate($item, Album::class);
 					$album->setCover($cover->__toArray());
 					$result[] = $album->__toArray();
-				}
 			}
 			
 			return $result;

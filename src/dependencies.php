@@ -19,8 +19,7 @@
 	//Guzzle HTTP client
 	$container['guzzleClient'] = function ($container) {
 		$headers = [
-			'Authorization' => 'Bearer ' . 'BQDAkVyyhfh4T3P3MP9rFq962qZ4VdFlEe_w34PC4KqOgI-Dv6LrFv19dqpWpG7YPnb3C_pQEuXnIpiXcdg',
-			//			'Accept' => 'application/json',
+			'Authorization' => 'Bearer ' . $container->get('settings')['spotify']['access_token'],
 		];
 		
 		return new Client(['base_uri' => $container->get('settings')['spotify']['base_url'], 'headers' => $headers]);
