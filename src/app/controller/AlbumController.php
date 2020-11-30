@@ -17,7 +17,7 @@
 				$data = json_decode($body, true);
 				$albums = $data['albums']['items'];
 				
-				return json_encode(AlbumHydrator::hydrate($albums));
+				return json_encode(AlbumHydrator::hydrate($albums, $band_name));
 			}
 			catch (ClientException $exception) {
 				if ($exception->getCode() == 401) {
@@ -52,7 +52,7 @@
 					$data = json_decode($body, true);
 					$albums = $data['albums']['items'];
 					
-					return json_encode(AlbumHydrator::hydrate($albums));
+					return json_encode(AlbumHydrator::hydrate($albums, $band_name));
 				}
 				
 				return $exception->getResponse()->getBody()->getContents();
